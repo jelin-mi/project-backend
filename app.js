@@ -12,7 +12,7 @@ const app = express();
 
 require("./config")(app);
 
-app.use(cors({ origin: process.env.ORIGIN || 'http://localhost:3000' }));
+app.use(cors({ origin: [process.env.ORIGIN || 'http://localhost:3000'] }));
 
 app.use("/api", allRoutes);
 app.use("/api/protected", isAuthenticated, protectedRoute);
