@@ -3,6 +3,7 @@
 Buddy Films :clapper: 
 ​
 
+​
 ## Description
 
 Buddy Films is an application which allows​ users to write down a movie their friend (Buddy) just recommended them to see.
@@ -19,7 +20,7 @@ There are 2 icons representing these actions when clicking on them:
 1.  Watchlist icon - click on it to add it to the Watchlist
 2.  Watched icon - click on it to mark the movie as already seen.
 
-
+​
 ## User stories
 
 - **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist.
@@ -48,8 +49,7 @@ There are 2 icons representing these actions when clicking on them:
 
 - **Delete film** - As a user I want to be able to delete movies from my profile.
 
-
-
+​
 ## Backlog
 
 - **Filter** - As a user I want to be able to filter the movies by categories such as Buddy, Watched, Rating.
@@ -62,11 +62,10 @@ There are 2 icons representing these actions when clicking on them:
 
 - **Review** - As a user I want to be able to write a review of the movies via a comment below the movie card.
 
-
-
+​
 ## Models
 
-User model
+### User model
 
 ```js
 {
@@ -80,7 +79,7 @@ User model
 }
 ```
 
-Movie model
+### Movie model
 
 ```js
 {
@@ -93,23 +92,18 @@ Movie model
     rating: Number,
 }
 ```
-
-
-
+​
 ### setup .env
 
 you need to setup the `.env` like `.env.sample`
+
 ​
-
-
 ### Install the app
 
 ```
 npm install
 ```
-
 ​
-
 ### Run the app
 
 ```
@@ -117,9 +111,7 @@ npm run start
 ```
 
 ​
-
 ## REST API endpoints
-
 ​
 | Name | Method | Endpoint | Auth | Req.body | Redirects |
 |-------|--------|-------------|------|---------------------|-----------|
