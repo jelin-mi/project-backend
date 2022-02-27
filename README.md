@@ -6,15 +6,15 @@ Buddy Films :clapper:
 ​
 ## Description
 
-Buddy Films is an application which allows​ users to write down a movie their friend (Buddy) just recommended them to see.
+Buddy Films is an application which allows​ users to write down a movie their friend (*Buddy*) just recommended them to see.
 
-‘Watchlist’ is a list of movies the user is interested in and previously added or selected from the main list (Films).
+*‘Watchlist’* is a list of movies the user is interested in and previously added or selected from the main list (Films).
 
-'Films' page displays all the movies recommended.
+*'Films'* page displays all the movies recommended.
 The user can search for a movie as he types and / or filter by different categories.
 Rating is a valoration of the user’s friend (what the buddy said).
 
-'Film detail' - here the user can see all the details of the movie (movie card).
+*'Film detail'* - here the user can see all the details of the movie (movie card).
 There are 2 icons representing these actions when clicking on them:
 
 1.  Watchlist icon - click on it to add it to the Watchlist
@@ -56,7 +56,7 @@ There are 2 icons representing these actions when clicking on them:
 
 - **Watched** - As a user I want to be able to mark a movie as Watched.
 
-- **Watchlist** - As a user I want to be able to add a movie created by other user into my Watchlist.
+- **Add to Watchlist** - As a user I want to be able to add a movie created by other user into my Watchlist.
 
 - **Rating** - As a user I want to be able to rate the movies with stars.
 
@@ -86,7 +86,7 @@ There are 2 icons representing these actions when clicking on them:
     name: String,
     year: Number,
     director: String,
-    channel: String,
+    channel: String,    <!-- Where to watch -->
     buddy: String,
     synopsis: String,
     rating: Number,
@@ -113,10 +113,26 @@ npm run start
 ​
 ## REST API endpoints
 ​
-| Name | Method | Endpoint | Auth | Req.body | Redirects |
-|-------|--------|-------------|------|---------------------|-----------|
-| Home | GET | / | Yes | | |
-| Login | POST | /auth/login | No | { email, password } | / |
+| Name                   | Method | Endpoint                            | Description                                      | Body                                  | Redirects                |
+| ---------------------- | ------ | ----------------------------------- | ------------------------------------------------ | ------------------------------------- | ------------------------ |
+| Homepage               | GET    | /                                   | See the main page                                |                                       |                          |
+| Signup form            | GET    | /auth/signup                        | See the form to sign up                          |                                       |                          |
+| Signup                 | POST   | /auth/signup                        | Sign up a user                                   | { mail, password }                    | /user-profile            |
+| Log in form            | GET    | /auth/login                         | See the form to log in                           |                                       |                          |
+| Log in                 | POST   | /auth/login                         | Log in the user                                  | { mail, password }                    | /films                   |
+| Log out                | POST   | /auth/logout                        | Log out the user                                 |                                       | /auth/login              |
+| User profile           | GET    | /user                               | See the profile page with editable form          |                                       |                          |
+| User profile edit form | GET    | /user/edit                          | See edit form with user's previous information   |                                       |                          |
+| User profile edit      | POST   | /user/edit                          | Send updated data of the user                    | { name, favouriteMovies, etc. }       | /user-profile            |
+| Watchlist              | GET    | /watchlist/list                     | See user's movies                                |                                       |                          |
+| Films                  | GET    | /films                              | See all the movies of all users                  |                                       |                          |
+| Film add form          | GET    | /watchlist/add                      | See form to upload a new movie                   |                                       |                          |
+| Film add               | POST   | /watchlist/add                      | Upload a movie to user's Watchlist               | { name, year, director, etc. }        | /user-watchlist/{filmId} |
+| Film detail            | GET    | /watchlist/{filmId}                 | See the Film detail page with editable form      |                                       |                          |
+| Film edit form         | GET    | /watchlist/{filmId}/edit            | See edit form with movies's previous information |                                       |                          |
+| Film edit              | POST   | /{userId}/watchlist/{filmId}/edit   | Edit movie's details                             | { name, year, director, etc. }        | /user-watchlist/{filmId} |
+| Film delete            | POST   | /{userId}/watchlist/{filmId}/delete | Delete the movie from user's Watchlist           |                                       | /user-watchlist          |
+
 ​
 ​
 
