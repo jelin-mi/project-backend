@@ -83,6 +83,7 @@ There are 2 icons representing these actions when clicking on them:
 
 ```js
 {
+    owner: { type: Schema.Types.ObjectId, ref: 'User' },
     name: String,
     year: Number,
     director: String,
