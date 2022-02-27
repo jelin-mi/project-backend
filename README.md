@@ -141,4 +141,4 @@ npm run start
 
 - [Slides]()
 - [Frontend repository](https://github.com/jelin-mi/project-frontend)
-- [Deployed version]()
+- [Deployed version](https://buddy-films.netlify.app)
