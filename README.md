@@ -86,7 +86,7 @@ There are 2 icons representing these actions when clicking on them:
     name: String,
     year: Number,
     director: String,
-    channel: String,    <!-- Where to watch -->
+    channel: String,    
     buddy: String,
     synopsis: String,
     rating: Number,
