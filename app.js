@@ -18,7 +18,7 @@ app.use('/api/protected', isAuthenticated, protectedRoute);
 app.use('/auth', authRouter);     // authRouter para las rutas del modelo User
 
 // mycode:
-app.use('/film', filmRoutes); // filmRoutes para las rutas del modelo Movie
+app.use('/films', filmRoutes); // filmRoutes para las rutas del modelo Movie
 
 require('./error-handling')(app);
 
