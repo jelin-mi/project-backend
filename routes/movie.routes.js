@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const Movie = require('../models/Movie.model');
 
-// CREATE ----------> POSTMAN: POST http://localhost: 5005/api/movies (envío el objeto de la L9)
+// CREATE
 router.post('/movies', async (req, res, next) => {
   const { name, year, director, channel, buddy, synopsis, rating } = req.body;
 
@@ -17,7 +17,7 @@ router.post('/movies', async (req, res, next) => {
   }
 });
 
-// READ all ----------> POSTMAN: GET http://localhost: 5005/api/movies
+// READ all
 router.get('/movies', async (req, res, next) => {
   try {
     const movieResponse = await Movie.find();
@@ -27,7 +27,7 @@ router.get('/movies', async (req, res, next) => {
   }
 });
 
-// READ detail ----------> POSTMAN: GET http://localhost: 5005/api/movies/<some id>
+// READ detail
 router.get('/movies/:id', async (req, res, next) => {
   const { id } = req.params;
 
@@ -49,7 +49,7 @@ router.get('/movies/:id', async (req, res, next) => {
   }
 });
 
-// UPDATE ----------> POSTMAN: PUT http://localhost: 5005/api/movies/<some id> (envío el objeto de la L10)
+// UPDATE
 router.put('/movies/:id', async (req, res, next) => {
   const { id } = req.params;
   const { name, year, director, channel, buddy, synopsis, rating } = req.body;
@@ -67,7 +67,7 @@ router.put('/movies/:id', async (req, res, next) => {
   }
 });
 
-// DELETE ----------> POSTMAN: DELETE http://localhost: 5005/api/movies/<some id>
+// DELETE
 router.delete('/movies/:id', async (req, res, next) => {
   const { id } = req.params;
 
@@ -78,7 +78,7 @@ router.delete('/movies/:id', async (req, res, next) => {
 
   try {
     const movie = await Movie.findByIdAndDelete(id);
-    res.json(movie, { message: `Movie with ${id} is removed successfully.` });
+    res.json(movie);
   } catch (e) {
     next(e);
   }
