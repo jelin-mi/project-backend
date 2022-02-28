@@ -135,7 +135,28 @@ npm run start
 | Film delete            | POST   | /{userId}/watchlist/{filmId}/delete | Delete the movie from user's Watchlist           |                                       | /user-watchlist          |
 
 ​
+// template:
+## REST API endpoints
+
 ​
+| Name | Method | Endpoint | Auth | Req.body | Redirects |
+|-------|--------|-------------|------|---------------------|-----------|
+| Home | GET | / | Yes | | |
+| Login | POST | /auth/login | No | { email, password } | / |
+
+
+5 rutas solo
+
+| Name      | Method    | Endpoint         | Request body                                               | Redirects                     |
+|-----------| --------- | ---------------- | ---------------------------------------------------------- | ----------------------------- |
+| Films     | GET       | `/api/films`     |                                                            | Returns all the projects      |
+|           | POST      | `/api/films`     | { name, year, director, channel, buddy, synopsis, rating } | Adds a new project            |
+|           | GET       | `/api/projects/:projectId` | (empty)      | Returns the specified project |
+|           | PUT       | `/api/projects/:projectId` | JSON         | Edits the specified project   |
+|           | DELETE    | `/api/projects/:projectId` | (empty)      | Deletes the specified project |​
+
+
+
 
 ## Links
 
