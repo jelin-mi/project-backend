@@ -7,6 +7,7 @@ const allRoutes = require('./routes');
 const authRouter = require('./routes/auth.routes');
 const protectedRoute = require('./routes/protected.routes');
 const movieRouter = require('./routes/movie.routes');
+const userRouter = require('./routes/user.routes');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use('/api', allRoutes);
 app.use('/api/protected', isAuthenticated, protectedRoute);
 app.use('/auth', authRouter);
 app.use('/api', movieRouter);
+app.use('/api', userRouter);
 
 require('./error-handling')(app);
 
