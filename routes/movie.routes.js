@@ -85,3 +85,5 @@ router.delete('/movies/:id', async (req, res, next) => {
 });
 
 module.exports = router;
+
+//TODO How to differentiate between My movies and All movies of all users?
