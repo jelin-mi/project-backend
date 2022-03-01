@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 const User = require('../models/User.model');
 const Movie = require('../models/Movie.model');
 
-// GET detail, PUT, DELETE
-
-// READ detail ----------> POSTMAN: GET http://localhost: 5005/api/user/<some id>
+// READ detail 
 router.get('/user/:id', async (req, res, next) => {
   const { id } = req.params;
 
@@ -28,10 +26,10 @@ router.get('/user/:id', async (req, res, next) => {
   }
 });
 
-// UPDATE ----------> POSTMAN: PUT http://localhost: 5005/api/user/<some id> (envío el objeto de la L10)
+// UPDATE
 router.put('/user/:id', async (req, res, next) => {
   const { id } = req.params;
-  const { email, userName, favouriteMovies, preferredDirector, myBuddies, avatar } = req.body;
+  const { name, favouriteMovies, preferredDirector, myBuddies, avatar } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
@@ -39,14 +37,14 @@ router.put('/user/:id', async (req, res, next) => {
   }
 
   try {
-    const userUpdated = await User.findByIdAndUpdate(id, { email, userName, favouriteMovies, preferredDirector, myBuddies, avatar }, { new: true });
+    const userUpdated = await User.findByIdAndUpdate(id, { name, favouriteMovies, preferredDirector, myBuddies, avatar }, { new: true });
     res.json(userUpdated);
   } catch (e) {
     next(e);
   }
 });
 
-// DELETE ----------> POSTMAN: DELETE http://localhost: 5005/api/user/<some id>
+// DELETE
 router.delete('/user/:id', async (req, res, next) => {
   const { id } = req.params;
 
@@ -56,9 +54,9 @@ router.delete('/user/:id', async (req, res, next) => {
   }
 
   try {
-    await Movie.deleteMany({ owner: id });
+    await Movie.deleteMany({ owner: id }); //TODO check if the movies of the deleted user were deleted as well.
     const user = await User.findByIdAndDelete(id);
-    res.json(user, { message: `User with ${id} is removed successfully.` });
+    res.json(user);
   } catch (e) {
     next(e);
   }
