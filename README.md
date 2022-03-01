@@ -84,7 +84,7 @@ There are 2 icons representing these actions when clicking on them:
 ```js
 {
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
-    name: String,
+    title: String,
     year: Number,
     director: String,
     channel: String,    
@@ -130,9 +130,9 @@ npm run start
 | ---------------------- | ------ | ------------------------------------ | ------------------------------------------------ | ------------------------------------- | ------------------------- |
 | Homepage               | GET    | /                                    | See the main page                                |                                       |                           |
 | Signup form            | GET    | /auth/signup                         | See the form to sign up                          |                                       |                           |
-| Signup                 | POST   | /auth/signup                         | Sign up a user                                   | { mail, password }                    | /auth/login               |
+| Signup                 | POST   | /auth/signup                         | Sign up a user                                   | { email, password, name }             | /auth/login               |
 | Log in form            | GET    | /auth/login                          | See the form to log in                           |                                       |                           |
-| Log in                 | POST   | /auth/login                          | Log in the user                                  | { mail, password }                    | /api/movies               |
+| Log in                 | POST   | /auth/login                          | Log in the user                                  | { email, password, name }             | /api/movies               |
 | Log out                | POST   | /auth/logout                         | Log out the user                                 |                                       | /auth/login               |
 | User profile           | GET    | /user                                | See the profile page with editable form          |                                       |                           |
 | User profile edit form | GET    | /user/edit                           | See edit form with user's previous information   |                                       |                           |
@@ -140,10 +140,10 @@ npm run start
 | Watchlist              | GET    | /watchlist/list                      | See user's movies                                |                                       |                           |
 | Movies                 | GET    | /movies                              | See all the movies of all users                  |                                       |                           |
 | Movie add form         | GET    | /watchlist/add                       | See form to upload a new movie                   |                                       |                           |
-| Movie add              | POST   | /watchlist/add                       | Upload a movie to user's Watchlist               | { name, year, director, etc. }        | /user-watchlist/{movieId} |
+| Movie add              | POST   | /watchlist/add                       | Upload a movie to user's Watchlist               | { title, year, director, etc. }       | /user-watchlist/{movieId} |
 | Movie detail           | GET    | /watchlist/{movieId}                 | See the Film detail page with editable form      |                                       |                           |
 | Movie edit form        | GET    | /watchlist/{movieId}/edit            | See edit form with movies's previous information |                                       |                           |
-| Movie edit             | POST   | /{userId}/watchlist/{movieId}/edit   | Edit movie's details                             | { name, year, director, etc. }        | /user-watchlist/{movieId} |
+| Movie edit             | POST   | /{userId}/watchlist/{movieId}/edit   | Edit movie's details                             | { title, year, director, etc. }       | /user-watchlist/{movieId} |
 | Movie delete           | POST   | /{userId}/watchlist/{movieId}/delete | Delete the movie from user's Watchlist           |                                       | /user-watchlist           |
 
 ​
@@ -151,16 +151,16 @@ npm run start
 
 | Name                | Method    | Endpoint                   | Request body                                                         | Redirects                     |
 |---------------------| --------- | -------------------------- | -------------------------------------------------------------------- | ----------------------------- |
-| Signup              | POST      | `/auth/signup`             | { email, password }                                                  | /auth/login                   |
-| Login               | POST      | `/auth/login`              | { email, password }                                                  | /api/movies                   |
+| Signup              | POST      | `/auth/signup`             | { email, password, name }                                            | /auth/login                   |
+| Login               | POST      | `/auth/login`              | { email, password, name }                                            | /api/movies                   |
 | Verify              | GET       | `/auth/verify`             |                                                                      |                               |
 | User profile        | GET       | `/api/user/:id`            |                                                                      |                               |
-| User profile edit   | PUT       | `/api/user/:id`            | { userName, favouriteMovies, preferredDirector, myBuddies, avatar }  | /api/user/:id                 |
+| User profile edit   | PUT       | `/api/user/:id`            | { name, favouriteMovies, preferredDirector, myBuddies, avatar }      | /api/user/:id                 |
 | User profile delete | DELETE    | `/api/user/:id`            |                                                                      | /                             |
-| Movie create        | POST      | `/api/movies`              | { name, year, director, channel, buddy, synopsis, rating }           | /api/movies                   |
+| Movie create        | POST      | `/api/movies`              | { title, year, director, channel, buddy, synopsis, rating }          | /api/movies                   |
 | Movie read all      | GET       | `/api/movies`              |                                                                      |                               |
 | Movie read detail   | GET       | `/api/movies/:id`          |                                                                      |                               |
-| Movie update        | PUT       | `/api/movies/:id`          | { name, year, director, channel, buddy, synopsis, rating }           | /api/movies                   | 
+| Movie update        | PUT       | `/api/movies/:id`          | { title, year, director, channel, buddy, synopsis, rating }          | /api/movies                   | 
 | Movie delete        | DELETE    | `/api/movies/:id`          |                                                                      | /api/movies                   |
 
 

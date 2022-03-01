@@ -5,10 +5,10 @@ const Movie = require('../models/Movie.model');
 
 // CREATE
 router.post('/movies', async (req, res, next) => {
-  const { name, year, director, channel, buddy, synopsis, rating } = req.body;
+  const { title, year, director, channel, buddy, synopsis, rating } = req.body;
 
   try {
-    const movie = await Movie.create({ name, year, director, channel, buddy, synopsis, rating });
+    const movie = await Movie.create({ title, year, director, channel, buddy, synopsis, rating });
     res.json({
       created: movie,
     });
@@ -52,7 +52,7 @@ router.get('/movies/:id', async (req, res, next) => {
 // UPDATE
 router.put('/movies/:id', async (req, res, next) => {
   const { id } = req.params;
-  const { name, year, director, channel, buddy, synopsis, rating } = req.body;
+  const { title, year, director, channel, buddy, synopsis, rating } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
@@ -60,7 +60,7 @@ router.put('/movies/:id', async (req, res, next) => {
   }
 
   try {
-    const movie = await Movie.findByIdAndUpdate(id, { name, year, director, channel, buddy, synopsis, rating }, { new: true });
+    const movie = await Movie.findByIdAndUpdate(id, { title, year, director, channel, buddy, synopsis, rating }, { new: true });
     res.json(movie);
   } catch (e) {
     next(e);

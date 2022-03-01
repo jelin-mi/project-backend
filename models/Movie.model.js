@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const movieSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
-  name: {
+  title: {
     type: String,
     required: true,
   },
