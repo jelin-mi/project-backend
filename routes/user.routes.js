@@ -54,7 +54,7 @@ router.delete('/user/:id', async (req, res, next) => {
   }
 
   try {
-    await Movie.deleteMany({ owner: id }); //TODO check if the movies of the deleted user were deleted as well.
+    await Movie.deleteMany({ owner: id }); //TODO The movies of the deleted user are NOT deleted.
     const user = await User.findByIdAndDelete(id);
     res.json(user);
   } catch (e) {
