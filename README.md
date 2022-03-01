@@ -70,8 +70,8 @@ There are 2 icons representing these actions when clicking on them:
 ```js
 {
     email: String,
-    hashedPassword: String,
-    userName: String,
+    password: String,
+    name: String,
     favouriteMovies: String,
     preferredDirector: String,
     myBuddies: String,
