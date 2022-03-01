@@ -8,13 +8,13 @@ Buddy Films :clapper:
 
 Buddy Films is an application which allows​ users to write down a movie their friend (*Buddy*) just recommended them to watch.
 
-*‘Watchlist’* is a list of movies the user is interested in and previously added or selected from the main list (Films).
+*‘Watchlist’* is a list of movies the user is interested in and previously added or selected from the main list (Movies).
 
-*'Films'* page displays all the movies recommended.
+*'Movies'* page displays all the movies recommended.
 The user can search for a movie as he types and / or filter by different categories.
 Rating is a valoration of the user’s friend (what the buddy said).
 
-*'Film detail'* - here the user can see all the details of the movie (movie card).
+*'Movie detail'* - here the user can see all the details of the movie (movie card).
 There are 2 icons representing these actions when clicking on them:
 
 1.  Watchlist icon - click on it to add it to the Watchlist
@@ -37,17 +37,17 @@ There are 2 icons representing these actions when clicking on them:
 
 - **User profile** - As a user I want to be able to see my profile and edit it.
 
-- **Film detail** - As a user I want to be able to see the detail of a movie and edit it.
+- **Movie detail** - As a user I want to be able to see the detail of a movie and edit it.
 
-- **Films** - As a user I want to be able to see all the movies of all the users.
+- **Movies** - As a user I want to be able to see all the movies of all the users.
 
-- **New film** - As a user I want to be able to add movies to my user profile.
+- **New movie** - As a user I want to be able to add movies to my user profile.
 
-- **See films** - As a user I want to be able to see the movies I added to my Watchlist.
+- **See movies** - As a user I want to be able to see the movies I added to my Watchlist.
 
-- **Update film** - As a user I want to be able to update the information of movies (Edit the Film detail).
+- **Update movie** - As a user I want to be able to update the information of movies (Edit the Movie detail).
 
-- **Delete film** - As a user I want to be able to delete movies from my profile.
+- **Delete movie** - As a user I want to be able to delete movies.
 
 ​
 ## Backlog
@@ -141,7 +141,7 @@ npm run start
 | Movies                 | GET    | /movies                              | See all the movies of all users                  |                                       |                           |
 | Movie add form         | GET    | /watchlist/add                       | See form to upload a new movie                   |                                       |                           |
 | Movie add              | POST   | /watchlist/add                       | Upload a movie to user's Watchlist               | { title, year, director, etc. }       | /user-watchlist/{movieId} |
-| Movie detail           | GET    | /watchlist/{movieId}                 | See the Film detail page with editable form      |                                       |                           |
+| Movie detail           | GET    | /watchlist/{movieId}                 | See the Movie detail page with editable form     |                                       |                           |
 | Movie edit form        | GET    | /watchlist/{movieId}/edit            | See edit form with movies's previous information |                                       |                           |
 | Movie edit             | POST   | /{userId}/watchlist/{movieId}/edit   | Edit movie's details                             | { title, year, director, etc. }       | /user-watchlist/{movieId} |
 | Movie delete           | POST   | /{userId}/watchlist/{movieId}/delete | Delete the movie from user's Watchlist           |                                       | /user-watchlist           |
