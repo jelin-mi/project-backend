@@ -2,7 +2,7 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 
 const User = require('../models/User.model');
-const Movie = require('../models/Movie.model');
+/* const Movie = require('../models/Movie.model'); */
 
 // READ detail 
 router.get('/user/:id', async (req, res, next) => {
@@ -54,7 +54,7 @@ router.delete('/user/:id', async (req, res, next) => {
   }
 
   try {
-    await Movie.deleteMany({ owner: id }); //TODO The movies of the deleted user are NOT deleted.
+    /* await Movie.deleteMany({ owner: id }); // The movies of the deleted user are NOT deleted. */
     const user = await User.findByIdAndDelete(id);
     res.json(user);
   } catch (e) {

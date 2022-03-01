@@ -1,14 +1,15 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
+const { isAuthenticated } = require('../middleware/jwt.middleware');
 
 const Movie = require('../models/Movie.model');
 
 // CREATE
-router.post('/movies', async (req, res, next) => {
+router.post('/movies', isAuthenticated, async (req, res, next) => {
   const { title, year, director, channel, buddy, synopsis, rating } = req.body;
-
+  const user = req.payload;
   try {
-    const movie = await Movie.create({ title, year, director, channel, buddy, synopsis, rating });
+    const movie = await Movie.create({ title, year, director, channel, buddy, synopsis, rating, owner: user._id });
     res.json({
       created: movie,
     });
@@ -50,9 +51,10 @@ router.get('/movies/:id', async (req, res, next) => {
 });
 
 // UPDATE
-router.put('/movies/:id', async (req, res, next) => {
+router.put('/movies/:id', isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
   const { title, year, director, channel, buddy, synopsis, rating } = req.body;
+  const user = req.payload;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
@@ -60,14 +62,20 @@ router.put('/movies/:id', async (req, res, next) => {
   }
 
   try {
-    const movie = await Movie.findByIdAndUpdate(id, { title, year, director, channel, buddy, synopsis, rating }, { new: true });
-    res.json(movie);
+    const movie = await Movie.findOneAndUpdate({ _id: id, owner: user._id },{ title, year, director, channel, buddy, synopsis, rating }, { new: true });
+
+    if (movie) {
+       res.json(movie);
+       return;
+    }
+    res.status(404).json({ error: 'Movie not found' });
+   
   } catch (e) {
     next(e);
   }
 });
 
-// DELETE
+/* // DELETE
 router.delete('/movies/:id', async (req, res, next) => {
   const { id } = req.params;
 
@@ -82,8 +90,6 @@ router.delete('/movies/:id', async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-});
+});*/
 
 module.exports = router;
-
-//TODO How to differentiate between My movies and All movies of all users?
