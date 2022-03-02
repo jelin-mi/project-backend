@@ -1,7 +1,5 @@
 const router = require('express').Router();
-
-const User = require('../models/User.model');
-const Movie = require('../models/Movie.model');
+const { isAuthenticated } = require('../middleware/jwt.middleware');
 const Watchlist = require('../models/Watchlist.model');
 
 // CREATE
@@ -18,13 +16,12 @@ router.post('/watchlist', isAuthenticated, async (req, res, next) => {
   }
 });
 
-
 // READ Watchlist
-router.get('/watchlist', isAuthenticated ,async (req, res, next) => {
+router.get('/watchlist', isAuthenticated, async (req, res, next) => {
   const user = req.payload;
   try {
-    const watchList = await Watchlist.findOne({ user: user._id}).populate('movie');
-    
+    const watchList = await Watchlist.findOne({ user: user._id }).populate('movie');
+
     res.json(watchList);
   } catch (e) {
     next(e);
