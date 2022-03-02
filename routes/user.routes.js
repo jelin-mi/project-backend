@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const User = require('../models/User.model');
 /* const Movie = require('../models/Movie.model'); */
 
-// READ detail 
-router.get('/user/:id', async (req, res, next) => {
+// READ detail
+router.get('/:userId', async (req, res, next) => {
   const { id } = req.params;
 
   // Check if the id string provided through the URL parameter is a valid Hexadecimal string.
@@ -16,7 +16,6 @@ router.get('/user/:id', async (req, res, next) => {
 
   try {
     const user = await User.findById(id);
-
     if (user === null) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -27,7 +26,7 @@ router.get('/user/:id', async (req, res, next) => {
 });
 
 // UPDATE
-router.put('/user/:id', async (req, res, next) => {
+router.put('/:userId/edit', async (req, res, next) => {
   const { id } = req.params;
   const { name, favouriteMovies, preferredDirector, myBuddies, avatar } = req.body;
 
@@ -45,7 +44,7 @@ router.put('/user/:id', async (req, res, next) => {
 });
 
 // DELETE
-router.delete('/user/:id', async (req, res, next) => {
+router.delete('/:userId/delete', async (req, res, next) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -54,7 +53,6 @@ router.delete('/user/:id', async (req, res, next) => {
   }
 
   try {
-    /* await Movie.deleteMany({ owner: id }); // The movies of the deleted user are NOT deleted. */
     const user = await User.findByIdAndDelete(id);
     res.json(user);
   } catch (e) {

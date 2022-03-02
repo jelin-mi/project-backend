@@ -165,12 +165,12 @@ npm run start
 | Verify              | GET       | `/auth/verify`             |                                                                      |                               |
 | See movies          | GET       | `/api/movies`              |                                                                      |                               |
 | Movie detail        | GET       | `/api/movies/:id`          |                                                                      |                               |
-| New movie           | POST      | `/api/movies`              | { title, year, director, channel, buddy, synopsis, rating }          | /api/movies                   |
-| Update movie        | PUT       | `/api/movies/:id`          | { title, year, director, channel, buddy, synopsis, rating }          | /api/movies                   | 
+| New movie           | POST      | `/api/movies`              | { owner, title, year, director, channel, buddy, synopsis, rating }   | /api/movies                   |
+| Update movie        | PUT       | `/api/movies/:id`          | { owner, title, year, director, channel, buddy, synopsis, rating }   | /api/movies                   | 
 | Watchlist           | GET       | `/api/movies/watchlist`    |                                                                      |                               | 
-| User profile        | GET       | `/api/user/:id`            |                                                                      |                               |
-| User profile edit   | PUT       | `/api/user/:id`            | { name, favouriteMovies, preferredDirector, myBuddies, avatar }      | /api/user/:id                 |
-| User profile delete | DELETE    | `/api/user/:id`            |                                                                      | /                             |
+| User profile        | GET       | `/:id`                     |                                                                      |                               |
+| User profile edit   | PUT       | `/:id/edit`                | { name, favouriteMovies, preferredDirector, myBuddies, avatar }      | /api/user/:id                 |
+| User profile delete | DELETE    | `/:id/delete`              |                                                                      | /                             |
 
 
 
