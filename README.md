@@ -159,18 +159,18 @@ npm run start
 
 | Name                | Method    | Endpoint                   | Request body                                                         | Redirects                     |
 |---------------------| --------- | -------------------------- | -------------------------------------------------------------------- | ----------------------------- |
-| Homepage            | GET      | `/`                         |                                                                      |                               |
-| Signup              | POST      | `/auth/signup`             | { email, password, name }                                            | /auth/login                   |
-| Login               | POST      | `/auth/login`              | { email, password, name }                                            | /api/movies                   |
+| Homepage            | GET       | `/`                        |                                                                      |                               |
+| Signup              | POST      | `/auth/signup`             | { email, password }                                                  | /auth/login                   |
+| Login               | POST      | `/auth/login`              | { email, password }                                                  | /api/movies                   |
 | Verify              | GET       | `/auth/verify`             |                                                                      |                               |
 | See movies          | GET       | `/api/movies`              |                                                                      |                               |
 | Movie detail        | GET       | `/api/movies/:id`          |                                                                      |                               |
 | New movie           | POST      | `/api/movies`              | { owner, title, year, director, channel, buddy, synopsis, rating }   | /api/movies                   |
 | Update movie        | PUT       | `/api/movies/:id`          | { owner, title, year, director, channel, buddy, synopsis, rating }   | /api/movies                   | 
 | Watchlist           | GET       | `/api/movies/watchlist`    |                                                                      |                               | 
-| User profile        | GET       | `/:id`                     |                                                                      |                               |
-| User profile edit   | PUT       | `/:id/edit`                | { name, favouriteMovies, preferredDirector, myBuddies, avatar }      | /api/user/:id                 |
-| User profile delete | DELETE    | `/:id/delete`              |                                                                      | /                             |
+| User profile        | GET       | `/api/:userId`             |                                                                      |                               |
+| User profile edit   | PUT       | `/api/:userId/edit`        | { name, favouriteMovies, preferredDirector, myBuddies, avatar }      | /:userId                      |
+| User profile delete | DELETE    | `/api/:userId/delete`      |                                                                      | /                             |
 
 
 
