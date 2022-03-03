@@ -124,7 +124,7 @@ npm run start
 | Name                | Method    | Endpoint                   | Request body                                                                     | Redirects                     |
 |---------------------| --------- | -------------------------- | -------------------------------------------------------------------------------- | ----------------------------- |
 | Homepage            | GET       | `/`                        |                                                                                  |                               |
-| Signup              | POST      | `/auth/signup`             | { email, password, name, favouriteMovies, preferredDirector, myBuddies, avatar } | /auth/login                   |
+| Signup              | POST      | `/auth/signup`             | { email, password, name }                                                        | /auth/login                   |
 | Login               | POST      | `/auth/login`              | { email, password }                                                              | /api/movies                   |
 | Verify              | GET       | `/auth/verify`             |                                                                                  |                               |
 | See movies          | GET       | `/api/movies`              |                                                                                  |                               |
