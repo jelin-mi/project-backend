@@ -5,7 +5,7 @@ const { isAuthenticated } = require('../middleware/jwt.middleware');
 const Movie = require('../models/Movie.model');
 
 // CREATE
-router.post('/movies', isAuthenticated, async (req, res, next) => {
+router.post('/', isAuthenticated, async (req, res, next) => {
   const { title, year, director, channel, buddy, synopsis, rating } = req.body;
   const user = req.payload;
   try {
@@ -19,7 +19,7 @@ router.post('/movies', isAuthenticated, async (req, res, next) => {
 });
 
 // READ all
-router.get('/movies', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const movieResponse = await Movie.find();
     res.json(movieResponse);
@@ -29,7 +29,7 @@ router.get('/movies', async (req, res, next) => {
 });
 
 // READ detail
-router.get('/movies/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   const { id } = req.params;
 
   // Check if the id string provided through the URL parameter is a valid Hexadecimal string.
@@ -51,7 +51,7 @@ router.get('/movies/:id', async (req, res, next) => {
 });
 
 // UPDATE
-router.put('/movies/:id', isAuthenticated, async (req, res, next) => {
+router.put('/:id', isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
   const { title, year, director, channel, buddy, synopsis, rating } = req.body;
   const user = req.payload;
@@ -74,22 +74,5 @@ router.put('/movies/:id', isAuthenticated, async (req, res, next) => {
     next(e);
   }
 });
-
-/* // DELETE
-router.delete('/movies/:id', async (req, res, next) => {
-  const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({ message: 'Specified id is not valid' });
-    return;
-  }
-
-  try {
-    const movie = await Movie.findByIdAndDelete(id);
-    res.json(movie);
-  } catch (e) {
-    next(e);
-  }
-});*/
 
 module.exports = router;

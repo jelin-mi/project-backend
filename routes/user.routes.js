@@ -1,21 +1,18 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
+const { isAuthenticated } = require('../middleware/jwt.middleware');
 
 const User = require('../models/User.model');
-/* const Movie = require('../models/Movie.model'); */
 
-// READ detail
-router.get('/:userId', async (req, res, next) => {
-  const { id } = req.params;
-
-  // Check if the id string provided through the URL parameter is a valid Hexadecimal string.
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+// READ User detail
+router.get('/', isAuthenticated, async (req, res, next) => {
+  const user = req.payload;
+  if (!mongoose.Types.ObjectId.isValid(user._id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
-
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(user._id);
     if (user === null) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -26,7 +23,7 @@ router.get('/:userId', async (req, res, next) => {
 });
 
 // UPDATE
-router.put('/:userId/edit', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
   const { id } = req.params;
   const { name, favouriteMovies, preferredDirector, myBuddies, avatar } = req.body;
 
@@ -44,7 +41,7 @@ router.put('/:userId/edit', async (req, res, next) => {
 });
 
 // DELETE
-router.delete('/:userId/delete', async (req, res, next) => {
+router.delete('/', async (req, res, next) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {

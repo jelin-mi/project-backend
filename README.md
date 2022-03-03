@@ -131,10 +131,8 @@ npm run start
 | Movie detail        | GET       | `/api/movies/:id`          |                                                                                  |                               |
 | New movie           | POST      | `/api/movies`              | { owner, title, year, director, channel, buddy, synopsis, rating }               | /api/movies                   |
 | Update movie        | PUT       | `/api/movies/:id`          | { owner, title, year, director, channel, buddy, synopsis, rating }               | /api/movies                   | 
-| Watchlist           | GET       | `/api/movies/watchlist`    |                                                                                  |                               | 
-| User profile        | GET       | `/api/:userId`             |                                                                                  |                               |
-| User profile edit   | PUT       | `/api/:userId/edit`        | { name, favouriteMovies, preferredDirector, myBuddies, avatar }                  | /:userId                      |
-| User profile delete | DELETE    | `/api/:userId/delete`      |                                                                                  | /                             |
+| Watchlist           | GET       | `/api/watchlist`           | { movieId }                                                                      |                               | 
+| User profile        | GET       | `/api/profile`             |                                                                                  |                               |
 
 
 
