@@ -118,59 +118,23 @@ npm install
 npm run start
 ```
 
-​
-
-
-
-
-
-
-
-
-
-
-
-
-## Overview for Frontend ?  //TODO
-​
-| Name                   | Method | Endpoint                             | Description                                      | Body                                  | Redirects                 |
-| ---------------------- | ------ | ------------------------------------ | ------------------------------------------------ | ------------------------------------- | ------------------------- |
-| Homepage               | GET    | /                                    | See the main page                                |                                       |                           |
-| Signup form            | GET    | /auth/signup                         | See the form to sign up                          |                                       |                           |
-| Signup                 | POST   | /auth/signup                         | Sign up a user                                   | { email, password, name }             | /auth/login               |
-| Log in form            | GET    | /auth/login                          | See the form to log in                           |                                       |                           |
-| Log in                 | POST   | /auth/login                          | Log in the user                                  | { email, password, name }             | /api/movies               |
-| Log out                | POST   | /auth/logout                         | Log out the user                                 |                                       | /auth/login               |
-| User profile           | GET    | /user                                | See the profile page with editable form          |                                       |                           |
-| User profile edit form | GET    | /user/edit                           | See edit form with user's previous information   |                                       |                           |
-| User profile edit      | POST   | /user/edit                           | Send updated data of the user                    | { name, favouriteMovies, etc. }       | /api/user/:id             |
-| Watchlist              | GET    | /watchlist/list                      | See user's movies                                |                                       |                           |
-| Movies                 | GET    | /movies                              | See all the movies of all users                  |                                       |                           |
-| Movie add form         | GET    | /watchlist/add                       | See form to upload a new movie                   |                                       |                           |
-| Movie add              | POST   | /watchlist/add                       | Upload a movie to user's Watchlist               | { title, year, director, etc. }       | /user-watchlist/{movieId} |
-| Movie detail           | GET    | /watchlist/{movieId}                 | See the Movie detail page with editable form     |                                       |                           |
-| Movie edit form        | GET    | /watchlist/{movieId}/edit            | See edit form with movies's previous information |                                       |                           |
-| Movie edit             | POST   | /{userId}/watchlist/{movieId}/edit   | Edit movie's details                             | { title, year, director, etc. }       | /user-watchlist/{movieId} |
-| Movie delete           | POST   | /{userId}/watchlist/{movieId}/delete | Delete the movie from user's Watchlist           |                                       | /user-watchlist           |
-
-​
 
 ## REST API endpoints
 
-| Name                | Method    | Endpoint                   | Request body                                                         | Redirects                     |
-|---------------------| --------- | -------------------------- | -------------------------------------------------------------------- | ----------------------------- |
-| Homepage            | GET       | `/`                        |                                                                      |                               |
-| Signup              | POST      | `/auth/signup`             | { email, password }                                                  | /auth/login                   |
-| Login               | POST      | `/auth/login`              | { email, password }                                                  | /api/movies                   |
-| Verify              | GET       | `/auth/verify`             |                                                                      |                               |
-| See movies          | GET       | `/api/movies`              |                                                                      |                               |
-| Movie detail        | GET       | `/api/movies/:id`          |                                                                      |                               |
-| New movie           | POST      | `/api/movies`              | { owner, title, year, director, channel, buddy, synopsis, rating }   | /api/movies                   |
-| Update movie        | PUT       | `/api/movies/:id`          | { owner, title, year, director, channel, buddy, synopsis, rating }   | /api/movies                   | 
-| Watchlist           | GET       | `/api/movies/watchlist`    |                                                                      |                               | 
-| User profile        | GET       | `/api/:userId`             |                                                                      |                               |
-| User profile edit   | PUT       | `/api/:userId/edit`        | { name, favouriteMovies, preferredDirector, myBuddies, avatar }      | /:userId                      |
-| User profile delete | DELETE    | `/api/:userId/delete`      |                                                                      | /                             |
+| Name                | Method    | Endpoint                   | Request body                                                                     | Redirects                     |
+|---------------------| --------- | -------------------------- | -------------------------------------------------------------------------------- | ----------------------------- |
+| Homepage            | GET       | `/`                        |                                                                                  |                               |
+| Signup              | POST      | `/auth/signup`             | { email, password, name, favouriteMovies, preferredDirector, myBuddies, avatar } | /auth/login                   |
+| Login               | POST      | `/auth/login`              | { email, password }                                                              | /api/movies                   |
+| Verify              | GET       | `/auth/verify`             |                                                                                  |                               |
+| See movies          | GET       | `/api/movies`              |                                                                                  |                               |
+| Movie detail        | GET       | `/api/movies/:id`          |                                                                                  |                               |
+| New movie           | POST      | `/api/movies`              | { owner, title, year, director, channel, buddy, synopsis, rating }               | /api/movies                   |
+| Update movie        | PUT       | `/api/movies/:id`          | { owner, title, year, director, channel, buddy, synopsis, rating }               | /api/movies                   | 
+| Watchlist           | GET       | `/api/movies/watchlist`    |                                                                                  |                               | 
+| User profile        | GET       | `/api/:userId`             |                                                                                  |                               |
+| User profile edit   | PUT       | `/api/:userId/edit`        | { name, favouriteMovies, preferredDirector, myBuddies, avatar }                  | /:userId                      |
+| User profile delete | DELETE    | `/api/:userId/delete`      |                                                                                  | /                             |
 
 
 
