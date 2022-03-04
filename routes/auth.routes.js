@@ -49,15 +49,15 @@ router.post('/signup', (req, res, next) => {
 
       // Create the new user in the database
       // We return a pending promise, which allows us to chain another `then`
-      return User.create({ email, password: hashedPassword, name });
+      return User.create({ email, password: hashedPassword /* , name */ }); // I do not need a name.
     })
     .then(createdUser => {
       // Deconstruct the newly created user object to omit the password
       // We should never expose passwords publicly
-      const { email, name, _id } = createdUser;
+      const { email, /* name, */ _id } = createdUser;
 
       // Create a new object that doesn't expose the password
-      const user = { email, name, _id };
+      const user = { email, /* name, */ _id }; // I do not need a name.
 
       // Send a json response containing the user object
       res.status(201).json({ user: user });
@@ -106,7 +106,7 @@ router.post('/login', (req, res, next) => {
         // Send the token as the response
         res.status(200).json({ authToken: authToken });
       } else {
-        res.status(401).json({ message: 'Unable to authenticate the user' });
+        res.status(401).json({ message: 'This password is not correct.' }); // updated
       }
     })
     .catch(err => res.status(500).json({ message: 'Internal Server Error' }));
