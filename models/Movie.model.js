@@ -13,6 +13,7 @@ const movieSchema = new Schema({
   buddy: String,
   synopsis: String,
   rating: { type: Number, enum: [1, 2, 3] },
+  // image to upload
 });
 
 module.exports = model('Movie', movieSchema);
