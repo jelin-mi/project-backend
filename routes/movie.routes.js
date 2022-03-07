@@ -62,14 +62,14 @@ router.put('/:id', isAuthenticated, async (req, res, next) => {
   }
 
   try {
-    const movie = await Movie.findOneAndUpdate({ _id: id, owner: user._id },{ title, year, director, channel, buddy, synopsis, rating }, { new: true });
+    const movie = await Movie.findOneAndUpdate({ _id: id, owner: user._id }, { title, year, director, channel, buddy, synopsis, rating }, { new: true });
 
     if (movie) {
-       res.json(movie);
-       return;
+      res.json(movie);
+      return;
     }
     res.status(404).json({ error: 'Movie not found' });
-   
+
   } catch (e) {
     next(e);
   }
