@@ -29,11 +29,10 @@ router.get('/', isAuthenticated, async (req, res, next) => {
 });
 
 // DELETE from Watchlist
-router.delete('/', isAuthenticated, async (req, res, next) => {
-  const { movieId } = req.body;
-  const user = req.payload;
+router.post('/delete', isAuthenticated, async (req, res, next) => {
+  const { watchlistId } = req.body;
   try {
-    const watchlist = await Watchlist.findByIdAndDelete({ user: user._id, movie: movieId });
+    const watchlist = await Watchlist.findByIdAndDelete(watchlistId);
     res.json({
       removed: watchlist,
     });

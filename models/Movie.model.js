@@ -13,7 +13,7 @@ const movieSchema = new Schema({
   buddy: String,
   synopsis: String,
   rating: { type: Number, enum: [1, 2, 3] },
-  //TODO country 
+  // country 
   // image to upload
 });
 
