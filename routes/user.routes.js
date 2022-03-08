@@ -12,7 +12,7 @@ router.get('/', isAuthenticated, async (req, res, next) => {
     return;
   }
   try {
-    const user = await User.findById(user._id);
+    const user = await User.findById(user._id); //TODO
     if (user === null) {
       return res.status(404).json({ error: 'User not found' });
     }
