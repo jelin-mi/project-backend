@@ -1,18 +1,17 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const { isAuthenticated } = require('../middleware/jwt.middleware');
-
 const User = require('../models/User.model');
 
 // READ User detail
 router.get('/', isAuthenticated, async (req, res, next) => {
-  const user = req.payload;
-  if (!mongoose.Types.ObjectId.isValid(user._id)) {
+  const currentUser = req.payload;
+  if (!mongoose.Types.ObjectId.isValid(currentUser._id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
   try {
-    const user = await User.findById(user._id); //TODO
+    const user = await User.findById(currentUser._id);
     if (user === null) {
       return res.status(404).json({ error: 'User not found' });
     }
