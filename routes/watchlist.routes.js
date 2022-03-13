@@ -7,10 +7,16 @@ router.post('/', isAuthenticated, async (req, res, next) => {
   const { movieId } = req.body;
   const user = req.payload;
   try {
-    const watchlist = await Watchlist.create({ user: user._id, movie: movieId });
-    res.json({
-      created: watchlist,
-    });
+    const added = await Watchlist.findOne({ user: user._id, movie: movieId }).exec();
+    console.log(added);
+    if (added) {
+      res.status(400).json({ message: 'This movie is already in your Watchlist' });
+    } else {
+      const watchlist = await Watchlist.create({ user: user._id, movie: movieId });
+      res.json({
+        created: watchlist,
+      });
+    }
   } catch (e) {
     next(e);
   }
