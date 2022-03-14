@@ -1,21 +1,30 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const { isAuthenticated } = require('../middleware/jwt.middleware');
-
 const Movie = require('../models/Movie.model');
+const fileUploader = require('../config/cloudinary.config');
 
 // CREATE
 router.post('/', isAuthenticated, async (req, res, next) => {
-  const { title, year, director, channel, buddy, synopsis, rating } = req.body;
+  const { title, imageUrl, year, country, director, channel, buddy, synopsis, rating } = req.body;
   const user = req.payload;
   try {
-    const movie = await Movie.create({ title, year, director, channel, buddy, synopsis, rating, owner: user._id });
+    const movie = await Movie.create({ title, imageUrl, year, country, director, channel, buddy, synopsis, rating, owner: user._id });
     res.json({
       created: movie,
     });
   } catch (e) {
     next(e);
   }
+});
+
+router.post('/upload', fileUploader.single('imageUrl'), (req, res, next) => {
+  if (!req.file) {
+    next(new Error('No file uploaded!'));
+    return;
+  }
+
+  res.json({ fileUrl: req.file.path });
 });
 
 // READ all
@@ -53,7 +62,7 @@ router.get('/:id', async (req, res, next) => {
 // UPDATE
 router.put('/:id', isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
-  const { title, year, director, channel, buddy, synopsis, rating } = req.body;
+  const { title, imageUrl, year, country, director, channel, buddy, synopsis, rating } = req.body;
   const user = req.payload;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -62,7 +71,11 @@ router.put('/:id', isAuthenticated, async (req, res, next) => {
   }
 
   try {
-    const movie = await Movie.findOneAndUpdate({ _id: id, owner: user._id }, { title, year, director, channel, buddy, synopsis, rating }, { new: true });
+    const movie = await Movie.findOneAndUpdate(
+      { _id: id, owner: user._id },
+      { title, imageUrl, year, country, director, channel, buddy, synopsis, rating },
+      { new: true },
+    );
 
     if (movie) {
       res.json(movie);

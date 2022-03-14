@@ -8,13 +8,13 @@ const movieSchema = new Schema({
     required: true,
   },
   year: Number,
+  country: String,
   director: String,
   channel: String,
   buddy: String,
   synopsis: String,
-  rating: { type: Number, enum: [1, 2, 3] },
-  // country 
-  // image to upload
+  rating: Number,
+  imageUrl: String,
 });
 
 module.exports = model('Movie', movieSchema);
