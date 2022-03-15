@@ -23,7 +23,7 @@ router.post('/upload', fileUploader.single('imageUrl'), (req, res, next) => {
     next(new Error('No file uploaded!'));
     return;
   }
-
+console.log(req.file.path);
   res.json({ fileUrl: req.file.path });
 });
 
