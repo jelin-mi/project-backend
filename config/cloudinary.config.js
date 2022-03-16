@@ -14,9 +14,9 @@ const storage = new CloudinaryStorage({
     width: 128,
     height: 156,
     crop: 'scale',
-    allowed_formats: ['jpg', 'png'],
-    folder: 'buddyfilms'
-  }
+    allowed_formats: ['jpg', 'png', 'jpeg'],
+    folder: 'buddyfilms',
+  },
 });
 
 module.exports = multer({ storage });
