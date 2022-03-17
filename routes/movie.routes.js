@@ -8,6 +8,10 @@ const fileUploader = require('../config/cloudinary.config');
 router.post('/', isAuthenticated, async (req, res, next) => {
   const { title, imageUrl, year, country, director, channel, buddy, synopsis, rating } = req.body;
   const user = req.payload;
+  if (title === '') {
+    res.status(400).json({ error: 'Title is required' });
+    return;
+  }
   try {
     const movie = await Movie.create({ title, imageUrl, year, country, director, channel, buddy, synopsis, rating, owner: user._id });
     res.json({
