@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    width: 128,
+    width: 120,
     height: 156,
     crop: 'scale',
     allowed_formats: ['jpg', 'png', 'jpeg'],
