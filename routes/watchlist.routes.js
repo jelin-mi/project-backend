@@ -8,7 +8,6 @@ router.post('/', isAuthenticated, async (req, res, next) => {
   const user = req.payload;
   try {
     const added = await Watchlist.findOne({ user: user._id, movie: movieId }).exec();
-    console.log(added);
     if (added) {
       res.status(400).json({ message: 'This movie is already in your Watchlist' });
     } else {
@@ -25,7 +24,6 @@ router.post('/', isAuthenticated, async (req, res, next) => {
 // READ Watchlist
 router.get('/', isAuthenticated, async (req, res, next) => {
   const user = req.payload;
-  console.log(user);
   try {
     const watchlist = await Watchlist.find({ user: user._id }).populate('movie');
     res.json(watchlist);
