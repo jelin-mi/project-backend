@@ -1,8 +1,8 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-router.get("/", (req, res, next) => {
+router.get('/', (req, res, next) => {
   res.status(200).json({
-    message: "this endpoint is protected",
+    message: 'this endpoint is protected',
   });
 });
 

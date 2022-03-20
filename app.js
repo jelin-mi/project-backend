@@ -13,7 +13,7 @@ require('./config')(app);
 app.use('/auth', authRouter);
 app.use('/api/movies', movieRouter);
 app.use('/api/watchlist', watchlistRouter);
-app.use('/api/profile', isAuthenticated,  userRouter);
+app.use('/api/profile', isAuthenticated, userRouter);
 
 require('./error-handling')(app);
 

@@ -11,9 +11,6 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    /* width: 138,
-    height: 180,
-    crop: 'scale', */
     allowed_formats: ['jpg', 'png', 'jpeg'],
     folder: 'buddyfilms',
   },

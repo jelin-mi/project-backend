@@ -85,7 +85,6 @@ router.put('/:id', isAuthenticated, async (req, res, next) => {
       return;
     }
     res.status(404).json({ error: 'Movie not found' });
-
   } catch (e) {
     next(e);
   }

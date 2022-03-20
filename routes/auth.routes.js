@@ -8,7 +8,7 @@ const saltRounds = 10;
 
 // POST  /auth/signup
 router.post('/signup', (req, res, next) => {
-  const { email, password } = req.body; 
+  const { email, password } = req.body;
 
   // Check if email or password are provided as empty string
   if (email === '' || password === '') {
