@@ -144,3 +144,4 @@ npm run start:dev
 - [Slides](https://slides.com/michaelajelinkova/buddy-films/fullscreen)
 - [Frontend repository](https://github.com/jelin-mi/project-frontend)
 - [Deployed version](https://buddy-films.netlify.app)
+- [Instructions](https://slides.com/michaelajelinkova/buddy-films-instructions/fullscreen)
